@@ -43,11 +43,11 @@ resource "aws_instance" "blog" {
 }
 
 resource "aws_route_table" "blog_rt" {
-  vpc_id = module.blog_vpc.id
+  vpc_id = module.blog_vpc.vpc_id
 
   route {
     cidr_block = "10.0.1.0/24"
-    gateway_id = module.blog_vpc.gateway_id
+    gateway_id = module.blog_vpc.public_subnets[0]
   }
 
   tags = {
