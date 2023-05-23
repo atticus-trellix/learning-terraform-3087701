@@ -42,6 +42,20 @@ resource "aws_instance" "blog" {
   }
 }
 
+resource "aws_route_table" "blog_rt" {
+  vpc_id = module.blog_vpc.id
+
+  route {
+    cidr_block = "10.0.1.0/24"
+    gateway_id = module.blog_vpc.gateway_id
+  }
+
+  tags = {
+    Name = "blog-rt-test"
+  }
+}
+
+
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.13.0"
