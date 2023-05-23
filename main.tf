@@ -29,7 +29,7 @@ resource "aws_instance" "blog" {
   }
 }
 
-resoure "aws_security_group" "blog" {
+resource "aws_security_group" "blog" {
   name        = "blog"
   description = "allow http and https in. Allow everything out"
   vpc_id      = data.aws_vpc.default.id
