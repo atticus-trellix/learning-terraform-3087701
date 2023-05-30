@@ -24,7 +24,6 @@ module "blog_vpc" {
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
   enable_nat_gateway = true
-  one_nat_gateway_per_az = true 
 
   tags = {
     Terraform = "true"
@@ -45,7 +44,7 @@ resource "aws_instance" "blog" {
 
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "4.13.0"
+  version = "3.14.2"
 
   vpc_id  = module.blog_vpc.vpc_id
   name    = "blog"
@@ -54,4 +53,3 @@ module "blog_sg" {
   egress_rules = ["all-all"]
   egress_cidr_blocks = ["0.0.0.0/0"]
 }
-
